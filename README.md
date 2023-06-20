@@ -9,7 +9,7 @@ Recently, flat minima are proven to be effective for improving generalization an
 # Further acceleration of GAM
 As shown in Appendix D in [full paper](https://arxiv.org/abs/2303.03108), optimizing the gradient of $R^{(1)}_{\rho}(\theta)$ according to Equation 7 and Equation 8 in the paper requires the Hessian vector product operation, which can still introduce considerable extra computation when the model is large. We approximate $\nabla\lVert\nabla \hat{L}(\theta)\rVert$ with first-order gradient as follows. 
 
-$$ \quad \nabla\left\lVert\nabla \hat{L}(\theta)\right\rVert \approx \frac{\nabla \hat{L}\left(\theta + \rho' \cdot \frac{\nabla \hat{L}(\theta)}{\lVert\nabla \hat{L}(\theta)\rVert}\right) - \nabla \hat{L}(\theta)}{\rho'},$$
+$$ \quad \nabla\left\lVert\nabla \hat{L}(\theta)\right\rVert \approx \frac{\nabla \hat{L}\left(\theta + \rho' \cdot \frac{\nabla \hat{L}(\theta)}{\lVert\nabla \hat{L}(\theta)\rVert}\right) - \nabla \hat{L}(\theta)}{\rho'}$$ ,
 
 where $\rho'$ is a small constant.
 
@@ -19,7 +19,7 @@ Then GAM can be implemented as follows. Please see detailed interpretation and d
 As shown in Appendix D in [full paper](https://arxiv.org/abs/2303.03108), the hyperparameters for accelerated GAM are different compared with the original version of GAM. Accelerated GAM has 5 hyperparameters, namely $\rho_t$ (args.grad_norm_rho in code), $\rho'_t$ (args.grad_rho), $\alpha$ (args.grad_beta_1), $\beta$ (args.grad_beta_0), and $\gamma$ (args.grad_gamma). We give the default choice of them (roughly searched) for CIFAR-10 and CIFAR-100 in main_cifar.py. We find that GAM is relatively robust to the choice of hyperparameters, yet carefully tuned hyperparameters can lead to further improvement on various tasks.
 
 # How to use GAM
-Basically, GAM can be used as a current pytorch optimizer with a few extra lines for base optimizer initialization and set_closure. Please see the following code for the usage of GAM. Required additional lines are highlighted with bold font.
+Basically, GAM can be used as a current PyTorch optimizer with a few extra lines for base optimizer initialization and set_closure. Please see the following code for the usage of GAM. Required additional lines are highlighted with bold font.
 
 ```python
 # optimizer initialization
