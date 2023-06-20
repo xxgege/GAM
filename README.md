@@ -9,7 +9,7 @@ Recently, flat minima are proven to be effective for improving generalization an
 # Further acceleration of GAM
 As shown in Appendix D in [full paper](https://arxiv.org/abs/2303.03108), optimizing the gradient of $R^{(1)}_{\rho}(\theta)$ according to Equation 7 and Equation 8 in the paper requires the Hessian vector product operation, which can still introduce considerable extra computation when the model is large. We approximate $\nabla\lVert\nabla \hat{L}(\theta)\rVert$ with first-order gradient as follows. 
 
-$$ \quad \nabla\left\lVert\nabla \hat{L}(\theta)\right\rVert \approx \frac{\nabla \hat{L}\left(\theta + \rho' \cdot \frac{\nabla \hat{L}(\theta)}{\lVert\nabla \hat{L}(\theta)\rVert}\right) - \nabla \hat{L}(\theta)}{\rho'}$$ ,
+$$\nabla\left\lVert\nabla \hat{L}(\theta)\right\rVert \approx \frac{\nabla \hat{L}\left(\theta + \rho' \cdot \frac{\nabla \hat{L}(\theta)}{\lVert\nabla \hat{L}(\theta)\rVert}\right) - \nabla \hat{L}(\theta)}{\rho'}$$,
 
 where $\rho'$ is a small constant.
 
